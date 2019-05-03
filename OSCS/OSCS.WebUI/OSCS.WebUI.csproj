@@ -176,6 +176,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ProductManagerController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -241,6 +242,10 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\ProductManager\Index.cshtml" />
+    <Content Include="Views\ProductManager\Create.cshtml" />
+    <Content Include="Views\ProductManager\Edit.cshtml" />
+    <Content Include="Views\ProductManager\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -257,6 +262,24 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\OSCS.Core\OSCS.Core.csproj">
+      <Project>{9abfe891-f646-4834-ba16-e54fe1f62be4}</Project>
+      <Name>OSCS.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OSCS.DataAccess.InMemory\OSCS.DataAccess.InMemory.csproj">
+      <Project>{3dfa7ed6-6c84-4230-8fe0-7690da41499f}</Project>
+      <Name>OSCS.DataAccess.InMemory</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OSCS.DataAccess.SQL\OSCS.DataAccess.SQL.csproj">
+      <Project>{0ae49898-3cb4-44b3-b576-88db1358242e}</Project>
+      <Name>OSCS.DataAccess.SQL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OSCS.Services\OSCS.Services.csproj">
+      <Project>{f238a2ec-17cc-4e98-86a5-727cee76368f}</Project>
+      <Name>OSCS.Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

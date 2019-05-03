@@ -10,8 +10,9 @@ namespace OSCS.DataAccess.InMemory
 {
     public class ProductRepository
     {
+
         ObjectCache cache = MemoryCache.Default;
-        List<Product> products; //Calling List to store product info
+        List<Product> products; //Creating List variable called products to store product info
 
         //Contructor
         public ProductRepository()
