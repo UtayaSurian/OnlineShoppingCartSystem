@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using OSCS.Core.Models; 
+using OSCS.Core.Models;
+using OSCS.Core.ViewModels;
 using OSCS.DataAccess.InMemory;
 
 
@@ -13,11 +14,14 @@ namespace OSCS.WebUI.Controllers
     {
         //Instances
         ProductRepository context;
+        ProductCategoryRepository productCategories; //Load from database
 
         //Enable the repository
         public ProductManagerController()
         {
+            //initiliaze
             context = new ProductRepository();
+            productCategories = new ProductCategoryRepository();
         }
         // GET: ProductManager
         public ActionResult Index()
@@ -30,8 +34,11 @@ namespace OSCS.WebUI.Controllers
         //Just Display the product
         public ActionResult Create()
         {
-            Product product = new Product();
-            return View(product);
+            ProductManagerViewModel viewModel = new ProductManagerViewModel();
+
+            viewModel.Product = new Product();   //Empty Product
+            viewModel.ProductCategories = productCategories.Collection();
+            return View(viewModel);
         }
 
         [HttpPost]
@@ -60,7 +67,10 @@ namespace OSCS.WebUI.Controllers
             }
             else
             {
-                return View(product);
+                ProductManagerViewModel viewModel = new ProductManagerViewModel();
+                viewModel.Product = product;    //Passing the current product from list in order to edit
+                viewModel.ProductCategories = productCategories.Collection();   //Editing take place based on dropdown
+                return View(viewModel);
             }
         }
 
