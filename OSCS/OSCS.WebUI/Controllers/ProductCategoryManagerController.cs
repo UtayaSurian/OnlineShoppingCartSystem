@@ -9,14 +9,14 @@ using System.Web.Mvc;
 namespace OSCS.WebUI.Controllers
 {
     public class ProductCategoryManagerController : Controller
-    {   
+    {
         //Instances
-        ProductCategoryRepository context;
+        InMemoryRepository<ProductCategory> context;
 
         //Enable the repository
         public ProductCategoryManagerController()
         {
-            context = new ProductCategoryRepository();
+            context = new InMemoryRepository<ProductCategory>();
         }
         // GET: ProductCategoryManager
         public ActionResult Index()     

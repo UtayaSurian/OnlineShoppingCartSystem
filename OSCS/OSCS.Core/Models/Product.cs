@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace OSCS.Core.Models
 {
-    public class Product
+    public class Product : BaseEntity
     {
-        public string Id { get; set; }
+        
 
         [StringLength(20)]  //Validations for Name in max lenght 
         [DisplayName("Product Name")]
@@ -22,12 +22,7 @@ namespace OSCS.Core.Models
         public string Category { get; set; }
         public string Image { get; set; }
 
-        //Contructor method to help in generating ID autmatically
-        public Product()
-        {
-            this.Id = Guid.NewGuid().ToString(); //auto generate id using guid
-        }
-
+       
 
     }
 }

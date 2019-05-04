@@ -13,15 +13,15 @@ namespace OSCS.WebUI.Controllers
     public class ProductManagerController : Controller
     {
         //Instances
-        ProductRepository context;
-        ProductCategoryRepository productCategories; //Load from database
+        InMemoryRepository<Product> context;
+        InMemoryRepository<ProductCategory> productCategories; //Load from database
 
         //Enable the repository
         public ProductManagerController()
         {
             //initiliaze
-            context = new ProductRepository();
-            productCategories = new ProductCategoryRepository();
+            context = new InMemoryRepository<Product>();
+            productCategories = new InMemoryRepository<ProductCategory>();
         }
         // GET: ProductManager
         public ActionResult Index()
