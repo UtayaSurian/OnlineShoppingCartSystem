@@ -1,4 +1,5 @@
-﻿using OSCS.Core.Models;
+﻿using OSCS.Core.Contracts;
+using OSCS.Core.Models;
 using OSCS.DataAccess.InMemory;
 using System;
 using System.Collections.Generic;
@@ -11,12 +12,12 @@ namespace OSCS.WebUI.Controllers
     public class ProductCategoryManagerController : Controller
     {
         //Instances
-        InMemoryRepository<ProductCategory> context;
+        IRepository<ProductCategory> context;
 
         //Enable the repository
-        public ProductCategoryManagerController()
+        public ProductCategoryManagerController(IRepository<ProductCategory> context)
         {
-            context = new InMemoryRepository<ProductCategory>();
+            this.context = context;
         }
         // GET: ProductCategoryManager
         public ActionResult Index()     

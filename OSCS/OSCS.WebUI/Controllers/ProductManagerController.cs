@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using OSCS.Core.Contracts;
 using OSCS.Core.Models;
 using OSCS.Core.ViewModels;
 using OSCS.DataAccess.InMemory;
@@ -13,15 +14,16 @@ namespace OSCS.WebUI.Controllers
     public class ProductManagerController : Controller
     {
         //Instances
-        InMemoryRepository<Product> context;
-        InMemoryRepository<ProductCategory> productCategories; //Load from database
+        IRepository<Product> context;
+        IRepository<ProductCategory> productCategories; //Load from database
 
-        //Enable the repository
-        public ProductManagerController()
+        //Enable the repository which implements Irepository
+        //Refer it from IRepository interface class in OSCS.Core
+        public ProductManagerController(IRepository<Product>productContext, IRepository<ProductCategory> productCategoriesContext)
         {
             //initiliaze
-            context = new InMemoryRepository<Product>();
-            productCategories = new InMemoryRepository<ProductCategory>();
+            context = productContext;
+            productCategories=productCategoriesContext ;
         }
         // GET: ProductManager
         public ActionResult Index()

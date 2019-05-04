@@ -1,4 +1,5 @@
-﻿using OSCS.Core.Models;
+﻿using OSCS.Core.Contracts;
+using OSCS.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace OSCS.DataAccess.InMemory
 {
-    public class InMemoryRepository<T> where T : BaseEntity //Placeholder which inherits from BaseEntity class
+    public class InMemoryRepository<T> : IRepository<T> where T : BaseEntity //Placeholder which inherits from BaseEntity class
     {
         ObjectCache cache = MemoryCache.Default;
         List<T> items;
@@ -32,6 +33,7 @@ namespace OSCS.DataAccess.InMemory
             cache[className] = items;   //Store items in memory
 
         }
+
 
         public void Insert(T t)
         {
