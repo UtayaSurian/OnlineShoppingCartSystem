@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;                    //For Images
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -44,7 +45,7 @@ namespace OSCS.WebUI.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(Product product)
+        public ActionResult Create(Product product, HttpPostedFileBase file)    //HttpPostedFIleBase to help in save images
         {
             if (!ModelState.IsValid)
             {
@@ -52,6 +53,11 @@ namespace OSCS.WebUI.Controllers
             }
             else
             {
+                //To Store the images into product
+                if (file!=null){
+                    product.Image = product.Id + Path.GetExtension(file.FileName); //save based on product id and extensio of file
+                    file.SaveAs(Server.MapPath("//Content//ProductImages//") + product.Image);
+                }
                 context.Insert(product);    //Insert products into collection
                 context.Commit();   //Save the changes by commiting
 
@@ -78,7 +84,7 @@ namespace OSCS.WebUI.Controllers
 
         //View Edit template will update the result by sending into product database
         [HttpPost]
-        public ActionResult Edit(Product product, string Id)
+        public ActionResult Edit(Product product, string Id, HttpPostedFileBase file)
         {
             Product productToEdit = context.Find(Id);
             if (productToEdit == null)
@@ -91,9 +97,13 @@ namespace OSCS.WebUI.Controllers
                     return View(product);
                 }
                 //Edit the products 
+                if (file != null)
+                {
+                  productToEdit.Image = product.Id + Path.GetExtension(file.FileName); //save based on product id and extensio of file
+                  file.SaveAs(Server.MapPath("//Content//ProductImages//") + productToEdit.Image);
+                }
                 productToEdit.Category = product.Category;
                 productToEdit.Description = product.Description;
-                productToEdit.Image = product.Image;
                 productToEdit.Name = product.Name;
                 productToEdit.Price = product.Price;
 
