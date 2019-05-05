@@ -1,5 +1,6 @@
 ﻿using OSCS.Core.Contracts;
 using OSCS.Core.Models;
+using OSCS.Core.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,10 +23,26 @@ namespace OSCS.WebUI.Controllers
             context = productContext;
             productCategories = productCategoriesContext;
         }
-        public ActionResult Index()
+        public ActionResult Index(string Category=null)
         {
-            List<Product> products = context.Collection().ToList(); //Get the products and store into list
-            return View(products);
+            List<Product> products; //Get the products and store into list //Create an empty list of products
+            List<ProductCategory> categories = productCategories.Collection().ToList();
+            
+            if (Category == null)
+            {
+               products = context.Collection().ToList();  //If the category is empty the show the entire list of products
+            }
+            else
+            {
+                //Filteration here
+                products = context.Collection().Where(p => p.Category == Category).ToList();
+            }
+            //Instantiate object
+            ProductListViewModel model = new ProductListViewModel();
+            model.Products = products;
+            model.ProductCategories = categories;
+
+            return View(model);
         }
 
         public ActionResult Details(string Id)
