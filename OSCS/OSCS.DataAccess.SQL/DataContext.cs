@@ -19,5 +19,8 @@ namespace OSCS.DataAccess.SQL
         //Creating model for SQL to create table
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductCategory> ProductCategories { get; set; }
+        //To tell the SQL to store these models into the database
+        public DbSet<Basket> Baskets { get; set; }
+        public DbSet<BasketItem> BasketItems { get; set; }
     }
 }
