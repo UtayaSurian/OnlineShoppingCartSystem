@@ -16,8 +16,10 @@ namespace OSCS.WebUI.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
+        //FOr future updates for roles
         public ManageController()
         {
+            //
         }
 
 

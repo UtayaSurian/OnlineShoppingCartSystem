@@ -12,6 +12,7 @@ using OSCS.DataAccess.InMemory;
 
 namespace OSCS.WebUI.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class ProductManagerController : Controller
     {
         //Instances
