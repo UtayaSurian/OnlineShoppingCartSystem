@@ -8,9 +8,13 @@ using System.Threading.Tasks;
 
 namespace OSCS.Core.Contracts
 {
-    public interface IOrderService
+    public interface IOrderService 
     {
         void CreateOrder(Order baseOrder, List<BasketItemViewModel> basketItems);
-       
+        List<Order> GetOrdersList();
+        Order GetOrder(string Id);
+        void UpdateOrder(Order updatedOrder);
+
+
     }
 }
