@@ -173,5 +173,12 @@ namespace OSCS.Services
             }
         }
 
+        //TO clear the basket once service has been done
+        public void ClearBasket(HttpContextBase httpContext)       //Send the context to get the basket 
+        {
+            Basket basket = GetBasket(httpContext,false);
+            basket.BasketItems.Clear();
+            basketContext.Commit();
+        }
     }
 }

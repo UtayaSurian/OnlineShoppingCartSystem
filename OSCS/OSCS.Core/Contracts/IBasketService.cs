@@ -14,5 +14,6 @@ namespace OSCS.Core.Contracts
         void RemoveFromBasket(HttpContextBase httpContext, string ItemId);
         List<BasketItemViewModel> GetBasketItems(HttpContextBase httpContext);
         BasketSummaryViewModel GetBasketSummary(HttpContextBase httpContext);
+        void ClearBasket(HttpContextBase httpContext);
     }
 }
