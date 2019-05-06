@@ -22,5 +22,6 @@ namespace OSCS.DataAccess.SQL
         //To tell the SQL to store these models into the database
         public DbSet<Basket> Baskets { get; set; }
         public DbSet<BasketItem> BasketItems { get; set; }
+        public DbSet<Customer> Customers { get; set; } 
     }
 }
